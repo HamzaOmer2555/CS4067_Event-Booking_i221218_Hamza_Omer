@@ -1,17 +1,33 @@
-from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
-from config import config  # Ensure this is imported correctly
+# from sqlalchemy import create_engine
+# from sqlalchemy.orm import sessionmaker, scoped_session
+# from sqlalchemy.ext.declarative import declarative_base
+# from config import DATABASE_URL
 
-# Create Base class
+# # Create database engine
+# engine = create_engine(DATABASE_URL)
+
+# # Create a session factory
+# SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+# Base = declarative_base()
+
+
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
+from config import DATABASE_URL
+
+# Create database engine
+engine = create_engine(DATABASE_URL)
+
+# Create session factory
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
-# Database connection
-DATABASE_URL = config.DATABASE_URL
-engine = create_engine(DATABASE_URL)
-SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
+# Function to initialize the database
+def init_db():
+    Base.metadata.create_all(bind=engine)  # Creates tables if they don't exist
 
-# Dependency for database session
+# Function to get a database session
 def get_db():
     db = SessionLocal()
     try:

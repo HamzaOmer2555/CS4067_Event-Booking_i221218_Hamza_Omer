@@ -1,17 +1,22 @@
+# from fastapi import FastAPI
+# from database import engine, Base
+# import routes
+
+# # Create database tables
+# Base.metadata.create_all(bind=engine)
+
+# app = FastAPI()
+
+# # Include routes
+# app.include_router(routes.router)
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+from database import init_db
 import routes
 
 app = FastAPI()
 
-# Enable CORS to allow frontend requests
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Change this to specific domains in production
-    allow_credentials=True,
-    allow_methods=["*"],  # Allows GET, POST, PUT, DELETE, OPTIONS
-    allow_headers=["*"],  # Allows all headers
-)
+@app.on_event("startup")
+def startup_event():
+    init_db()  # Ensure tables are created before queries
 
-# Include routes
 app.include_router(routes.router)

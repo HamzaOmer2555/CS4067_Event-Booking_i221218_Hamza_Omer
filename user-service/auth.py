@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 from fastapi import HTTPException
 from passlib.context import CryptContext
 import jwt
-from config import config
+import config
 from jwt.exceptions import ExpiredSignatureError, InvalidTokenError
 
 
