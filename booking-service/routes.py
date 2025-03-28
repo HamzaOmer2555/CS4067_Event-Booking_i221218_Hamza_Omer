@@ -9,9 +9,9 @@ from datetime import datetime
 
 router = APIRouter()
 
-USER_SERVICE_URL = "http://127.0.0.1:8000"
-EVENT_SERVICE_URL = "http://127.0.0.1:8001"
-NOTIFICATION_SERVICE_URL = "http://127.0.0.1:8003"
+USER_SERVICE_URL = "http://user-service:8000"
+EVENT_SERVICE_URL = "http://event-service:8001"
+NOTIFICATION_SERVICE_URL = "http://notification-service:8003"
 
 
 # Pydantic schema for request/response

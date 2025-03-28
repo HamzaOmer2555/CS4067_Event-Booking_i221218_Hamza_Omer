@@ -49,7 +49,7 @@ services:
     ports:
       - "8001:8001"
     environment:
-      MONGO_URI: mongodb://admin:adminpassword@event-db:27017/event_db
+      MONGO_URI: mongodb://admin:adminpassword@event-service-db:27017
 
   # BOOKING SERVICE & DATABASE
   booking-db:
@@ -99,7 +99,7 @@ services:
     ports:
       - "8003:8003"
     environment:
-      MONGO_URI: mongodb://notif_admin:notif_password@notification-db:27017/notification_db
+      MONGO_URI: mongodb://notif_admin:notif_password@notification-db:27017
 
 volumes:
   user_db_data:

@@ -8,8 +8,8 @@ import requests
 
 router = APIRouter()
 
-EVENT_SERVICE_URL = "http://127.0.0.1:8001"
-BOOKING_SERVICE_URL = "http://127.0.0.1:8002"
+EVENT_SERVICE_URL = "http://event-service:8001"
+BOOKING_SERVICE_URL = "http://booking-service:8002"
 
 # Pydantic schemas
 class UserCreate(BaseModel):
