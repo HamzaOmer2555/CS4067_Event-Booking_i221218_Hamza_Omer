@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification-service
+  namespace: online-event-booking-hamza-omer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notification-service
+  template:
+    metadata:
+      labels:
+        app: notification-service
+    spec:
+      containers:
+        - name: notification-service
+          image: cs4067_event-booking_i221218_hamza_omer_notification-service
+          ports:
+            - containerPort: 8003
+          envFrom:
+            - configMapRef:
+                name: notification-service-config
+            - secretRef:
+                name: notification-service-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: notification-service
+  namespace: online-event-booking-hamza-omer
+spec:
+  selector:
+    app: notification-service
+  ports:
+    - protocol: TCP
+      port: 8003
+      targetPort: 8003
+  type: ClusterIP

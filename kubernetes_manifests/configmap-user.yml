@@ -1,0 +1,12 @@
+---
+# ConfigMap for user-service
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: user-service-config
+  namespace: online-event-booking-hamza-omer
+data:
+  DATABASE_HOST: user-service-db
+  DATABASE_PORT: "5432"
+  DATABASE_NAME: user_db
+  JWT_ALGORITHM: HS256

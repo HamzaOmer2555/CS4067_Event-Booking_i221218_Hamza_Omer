@@ -1,0 +1,12 @@
+---
+# ConfigMap for event-service
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: event-service-config
+  namespace: online-event-booking-hamza-omer
+data:
+  MONGO_HOST: event-service-db
+  MONGO_PORT: "27017"
+  MONGO_DB: event_db
+  MONGO_INITDB_DATABASE: event_db

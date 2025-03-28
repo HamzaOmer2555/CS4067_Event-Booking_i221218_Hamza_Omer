@@ -1,0 +1,12 @@
+---
+# ConfigMap for booking-service
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: booking-service-config
+  namespace: online-event-booking-hamza-omer
+data:
+  DATABASE_HOST: booking-service-db
+  DATABASE_PORT: "5432"
+  DATABASE_NAME: booking_db
+  JWT_ALGORITHM: HS256

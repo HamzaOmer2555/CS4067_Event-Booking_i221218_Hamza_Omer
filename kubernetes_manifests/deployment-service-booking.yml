@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: booking-service
+  namespace: online-event-booking-hamza-omer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: booking-service
+  template:
+    metadata:
+      labels:
+        app: booking-service
+    spec:
+      containers:
+        - name: booking-service
+          image: cs4067_event-booking_i221218_hamza_omer_booking-service:2.1
+          ports:
+            - containerPort: 8002
+          envFrom:
+            - configMapRef:
+                name: booking-service-config
+            - secretRef:
+                name: booking-service-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: booking-service
+  namespace: online-event-booking-hamza-omer
+spec:
+  selector:
+    app: booking-service
+  ports:
+    - protocol: TCP
+      port: 8002
+      targetPort: 8002
+  type: ClusterIP
